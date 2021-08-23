@@ -7,9 +7,22 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    // final dataFormLogin = Provider.of<LoginformProvider>(context);
+    return Scaffold(
       body: Center(
-        child: Text('Home Screen'),
+        child: SizedBox(
+          width: 100.0,
+          height: 100.0,
+          child: Column(
+            children: const [
+              Text(
+                'Email: ',
+                style: TextStyle(color: Colors.black),
+              ),
+              Text('Password:'),
+            ],
+          ),
+        ),
       ),
     );
   }

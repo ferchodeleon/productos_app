@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ///Global widget of card container.
 class CardContainer extends StatelessWidget {
   // ignore: public_member_api_docs
-  const CardContainer({Key key, @required this.chill}) : super(key: key);
+  const CardContainer({Key? key, required this.chill}) : super(key: key);
 
   ///Child widget insede of card container
   final Widget chill;

@@ -7,7 +7,7 @@ import 'package:products_app/widgets/widgets.dart';
 ///Page login and validate email and password
 class LoginScreen extends StatelessWidget {
   // ignore: public_member_api_docs
-  const LoginScreen({Key key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -47,7 +47,9 @@ class LoginScreen extends StatelessWidget {
 class _LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final loginForm = Provider.of<LoginformProvider>(context);
     return Form(
+      key: loginForm.formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
         children: [
@@ -66,6 +68,7 @@ class _LoginForm extends StatelessWidget {
 
               return regExp.hasMatch(value ?? '') ? null : 'Email incorrect';
             },
+            onChanged: (valueEmail) => loginForm.email = valueEmail,
           ),
           const SizedBox(height: 30.0),
           TextFormField(
@@ -82,6 +85,7 @@ class _LoginForm extends StatelessWidget {
                   ? null
                   : 'The password most be higher of 6 character';
             },
+            onChanged: (valuePassword) => loginForm.password = valuePassword,
           ),
           const SizedBox(height: 30.0),
           MaterialButton(
@@ -90,12 +94,27 @@ class _LoginForm extends StatelessWidget {
             disabledColor: Colors.grey,
             color: Colors.deepPurple,
             elevation: 10.0,
-            onPressed: () {
-              ///TODO: Login form
-            },
+            onPressed: loginForm.isLoading
+                ? null
+                : () async {
+                    FocusScope.of(context).unfocus();
+                    if (!loginForm.isValidForm()) return;
+                    loginForm.isLoading = true;
+
+                    await Future.delayed(const Duration(seconds: 2));
+
+                    loginForm.isLoading = false;
+
+                    Navigator.pushReplacementNamed(context, 'home');
+                  },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-              child: const Text('Save', style: TextStyle(color: Colors.white)),
+              child: Text(
+                loginForm.isLoading ? 'Loading..' : 'Save',
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 30.0),

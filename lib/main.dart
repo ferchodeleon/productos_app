@@ -3,6 +3,7 @@ import 'package:products_app/screens/screens.dart';
 
 void main() => runApp(MyApp());
 
+// ignore: public_member_api_docs
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,8 +12,8 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: 'login',
       routes: {
-        'login': (_) => LoginScreen(),
-        'home': (_) => HomeScreen(),
+        'login': (_) => const LoginScreen(),
+        'home': (_) => const HomeScreen(),
       },
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey[300],

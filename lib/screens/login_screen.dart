@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:products_app/providers/login_form-provider.dart';
 import 'package:products_app/ui/input_decorations.dart';
 import 'package:products_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 ///Page login and validate email and password
 class LoginScreen extends StatelessWidget {
@@ -23,7 +25,10 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 10.0),
                   Text('Login', style: Theme.of(context).textTheme.headline4),
                   const SizedBox(height: 30.0),
-                  _LoginForm()
+                  ChangeNotifierProvider(
+                    create: (_) => LoginformProvider(),
+                    child: _LoginForm(),
+                  ),
                 ],
               ),
             ),

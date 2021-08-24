@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:products_app/widgets/widgets.dart';
 
 /// Screen Home after the Login
 class HomeScreen extends StatelessWidget {
@@ -7,22 +8,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final dataFormLogin = Provider.of<LoginformProvider>(context);
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 100.0,
-          height: 100.0,
-          child: Column(
-            children: const [
-              Text(
-                'Email: ',
-                style: TextStyle(color: Colors.black),
-              ),
-              Text('Password:'),
-            ],
-          ),
-        ),
+      appBar: AppBar(
+        title: const Text('Productos'),
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) => ProductCard(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
       ),
     );
   }

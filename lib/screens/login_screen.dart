@@ -31,7 +31,8 @@ class LoginScreen extends StatelessWidget {
             const Text(
               'Create account',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-            )
+            ),
+            const SizedBox(height: 30.0),
           ],
         ),
       )),

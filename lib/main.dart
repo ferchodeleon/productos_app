@@ -3,19 +3,26 @@ import 'package:products_app/screens/screens.dart';
 
 void main() => runApp(MyApp());
 
+// ignore: public_member_api_docs
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: 'login',
+      initialRoute: 'home',
       routes: {
-        'login': (_) => LoginScreen(),
-        'home': (_) => HomeScreen(),
+        'login': (_) => const LoginScreen(),
+        'home': (_) => const HomeScreen(),
+        'productScreen': (_) => const ProductScreen(),
       },
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey[300],
+        appBarTheme: const AppBarTheme(elevation: 10.0, color: Colors.indigo),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.indigo,
+          elevation: 10.0,
+        ),
       ),
     );
   }

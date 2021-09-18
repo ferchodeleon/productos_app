@@ -85,7 +85,7 @@ class _ProductForm extends StatelessWidget {
               const SizedBox(height: 30),
               SwitchListTile.adaptive(
                 value: true,
-                title: Text('Disponible'),
+                title: const Text('Disponible'),
                 activeColor: Colors.indigo,
                 onChanged: (value) {},
               ),

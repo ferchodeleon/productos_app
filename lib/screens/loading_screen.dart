@@ -8,7 +8,9 @@ class LoadingScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Products'),
       ),
-      body: const CircularProgressIndicator(),
+      body: const Center(
+        child: CircularProgressIndicator(color: Colors.indigo),
+      ),
     );
   }
 }

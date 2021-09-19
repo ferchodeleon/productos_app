@@ -19,6 +19,9 @@ class Product {
   // ignore: public_member_api_docs
   double price;
 
+  ///
+  String? id;
+
   factory Product.fromJson(String str) =>
       Product.fromMap(json.decode(str) as Map<String, dynamic>);
 

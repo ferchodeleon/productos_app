@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:products_app/services/services.dart';
 import 'package:products_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 /// Screen Home after the Login
 class HomeScreen extends StatelessWidget {
-  // ignore: public_member_api_docs
-  const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final productServices = Provider.of<ProductsService>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Productos'),

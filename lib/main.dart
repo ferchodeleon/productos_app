@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:products_app/screens/screens.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+import 'screens/screens.dart';
+import 'services/services.dart';
+
+void main() => runApp(AppState());
+
+///Listen to services and chagen notifier in all app
+class AppState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ProductsService(),
+        ),
+      ],
+      child: MyApp(),
+    );
+  }
+}
 
 // ignore: public_member_api_docs
 class MyApp extends StatelessWidget {
@@ -13,7 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'login': (_) => const LoginScreen(),
-        'home': (_) => const HomeScreen(),
+        'home': (_) => HomeScreen(),
         'productScreen': (_) => ProductScreen(),
       },
       theme: ThemeData.light().copyWith(

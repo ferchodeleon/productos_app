@@ -33,8 +33,8 @@ class ProductsService extends ChangeNotifier {
       products.add(tempProducts);
     });
 
-    // isLoading = false;
+    isLoading = false;
     notifyListeners();
-    return this.products;
+    return products;
   }
 }

@@ -17,6 +17,7 @@ class ProductsService extends ChangeNotifier {
 
   /// In case
   bool isLoading = true;
+  late Product selectedProduct;
 
   Future<List<Product>> loadProduct() async {
     isLoading = true;

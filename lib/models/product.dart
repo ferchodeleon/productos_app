@@ -8,6 +8,7 @@ class Product {
     required this.name,
     this.picture,
     required this.price,
+    this.id,
   });
 
   // ignore: public_member_api_docs
@@ -30,7 +31,7 @@ class Product {
   factory Product.fromMap(Map<String, dynamic> json) => Product(
         available: json['available'] as bool,
         name: json['name'] as String,
-        picture: json['picture'] as String,
+        picture: json['picture'] as String?,
         price: json['price'] as double,
       );
 
@@ -45,4 +46,11 @@ class Product {
         // ignore: prefer_single_quotes
         "price": price,
       };
+
+  Product copy() => Product(
+        available: available,
+        name: name,
+        price: price,
+        id: id,
+      );
 }

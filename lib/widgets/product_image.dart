@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 ///Widget card image of products details
 class ProductImage extends StatelessWidget {
+  const ProductImage({this.image});
+  final String? image;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,16 +13,18 @@ class ProductImage extends StatelessWidget {
         decoration: _buildBoxDecoration(),
         width: double.infinity,
         height: 450,
-        child: const ClipRRect(
-          borderRadius: BorderRadius.only(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(45.0),
             topRight: Radius.circular(45.0),
           ),
-          child: FadeInImage(
-            fit: BoxFit.cover,
-            image: NetworkImage('http://via.placeholder.com/400x300/green'),
-            placeholder: AssetImage('assets/jar-loading.gif'),
-          ),
+          child: image == null
+              ? Image.asset('assets/no-image.png', fit: BoxFit.contain)
+              : FadeInImage(
+                  fit: BoxFit.contain,
+                  image: NetworkImage(image!),
+                  placeholder: const AssetImage('assets/jar-loading.gif'),
+                ),
         ),
       ),
     );

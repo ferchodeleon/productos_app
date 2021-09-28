@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:products_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
+
+import '../services/services.dart';
+import '../widgets/widgets.dart';
+import 'screens.dart';
 
 /// Screen Home after the Login
 class HomeScreen extends StatelessWidget {
-  // ignore: public_member_api_docs
-  const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Productos'),
-      ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (BuildContext context, int index) => GestureDetector(
-          onTap: () => Navigator.pushNamed(context, 'productScreen'),
-          child: ProductCard(),
+    final productsServices = Provider.of<ProductsService>(context);
+
+    if (productsServices.isLoading) {
+      return LoadingScreen();
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Productos'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-    );
+        body: ListView.builder(
+          itemCount: productsServices.products.length,
+          itemBuilder: (BuildContext context, int index) => GestureDetector(
+            onTap: () {
+              productsServices.selectedProduct =
+                  productsServices.products[index];
+              Navigator.pushNamed(context, 'productScreen');
+            },
+            child: ProductCard(
+              product: productsServices.products[index],
+            ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
+      );
+    }
   }
 }

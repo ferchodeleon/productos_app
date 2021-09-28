@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/product_form-provider.dart';
+import '../providers/product_form_provider.dart';
 import '../services/services.dart';
 import '../ui/input_decorations.dart';
 import '../widgets/widgets.dart';
@@ -96,7 +97,7 @@ class _ProductForm extends StatelessWidget {
                 initialValue: product.name,
                 onChanged: (value) => product.name = value,
                 validator: (value) {
-                  if (value == null || value.length < 1) {
+                  if (value == null || value.isEmpty) {
                     return 'El nombre es obligatorio';
                   }
                 },
@@ -108,6 +109,12 @@ class _ProductForm extends StatelessWidget {
               const SizedBox(height: 30),
               TextFormField(
                 initialValue: '${product.price}',
+
+                /// Format value type money with 2 decimals.
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                      RegExp(r'^(\d+)?\.?\d{0,2}'))
+                ],
                 onChanged: (value) => double.tryParse(value) == null
                     ? product.price = 0
                     : double.parse(value),
@@ -122,7 +129,7 @@ class _ProductForm extends StatelessWidget {
                 value: product.available,
                 title: const Text('Disponible'),
                 activeColor: Colors.indigo,
-                onChanged: (value) => product.available = value,
+                onChanged: productForm.updateAvailability,
               ),
               const SizedBox(height: 30),
             ],

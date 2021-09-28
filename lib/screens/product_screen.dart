@@ -30,43 +30,45 @@ class _ProductScreenbody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                ProductImage(image: productService.selectedProduct.picture),
-                Positioned(
-                  top: 60,
-                  left: 40,
-                  child: IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(
-                      Icons.arrow_back_ios,
-                      size: 40,
-                      color: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  ProductImage(image: productService.selectedProduct.picture),
+                  Positioned(
+                    top: 60,
+                    left: 40,
+                    child: IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        size: 40,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 60,
-                  right: 40,
-                  child: IconButton(
-                    onPressed: () {
-                      //TODO: Request Camera or gallery
-                    },
-                    icon: const Icon(
-                      Icons.camera_alt_outlined,
-                      size: 40,
-                      color: Colors.white,
+                  Positioned(
+                    top: 60,
+                    right: 40,
+                    child: IconButton(
+                      onPressed: () {
+                        //TODO: Request Camera or gallery
+                      },
+                      icon: const Icon(
+                        Icons.camera_alt_outlined,
+                        size: 40,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            _ProductForm(),
-            const SizedBox(height: 100),
-          ],
+                ],
+              ),
+              _ProductForm(),
+              const SizedBox(height: 100),
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
